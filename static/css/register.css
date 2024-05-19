@@ -1,0 +1,13 @@
+#go_login {
+    font-size: 18px;
+}
+
+#sendButton {
+    background-color: #1e2226 !important;
+    border: #495057 solid 1px !important;
+    cursor: pointer;
+    color: #dee2e6;
+    border-top-right-radius: 7px; /* 右上角圆弧幅度 */
+    border-bottom-right-radius: 7px; /* 右下角圆弧幅度 */
+}
+

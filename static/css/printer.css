@@ -1,0 +1,19 @@
+#printer {
+    margin-left: 0;
+    padding-top: 5px;
+    padding-bottom: 40px;
+    overflow-y: auto; /* 自动滚动 */
+    font-size: 22px;
+}
+
+#cursor {
+    display: inline-block;
+    animation: blink-caret 1.5s infinite; /* 光标闪烁动画 */
+}
+
+@keyframes blink-caret {
+    50% {
+        opacity: 0;
+    }
+}
+

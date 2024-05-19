@@ -1,0 +1,73 @@
+.registration-form {
+    position: relative;
+    background-color: #1e2226; /* 设置半透明白色背景 */
+    border-radius: 20px; /* 设置圆角 */
+    border: #404346 solid 1px;
+    padding: 20px 0 20px 0;
+    max-width: 500px; /* 设置最大宽度 */
+    font-size: 16px;
+    right: -100%; /* 初始状态：隐藏在屏幕右侧 */
+    animation: slideFromRight 0.5s forwards;
+    height: 500px;
+}
+
+.form-control {
+    background-color: #1e2226;
+    border: #495057 solid 1px;
+    border-radius: 7px;
+    color: #dee2e6;
+    font-size: 18px;
+}
+
+.form-control:-webkit-autofill {
+    /*background-color: #2e3849 !important;*/
+    -webkit-box-shadow: 0 0 0 1000px #2e3849 inset;
+    background-clip: padding-box;
+    -webkit-text-fill-color: #ffffe2;
+    caret-color: #ffffff;
+}
+
+
+.form-control-label {
+    color: #dee2e6;
+    padding-top: 5px;
+    font-size: 19px;
+}
+
+@keyframes slideFromRight {
+    0% {
+        right: -100%; /* 初始位置 */
+    }
+    100% {
+        right: 6%; /* 最终位置 */
+    }
+}
+
+#visibilityBtn {
+    background-color: #1e2226 !important;
+    border: #495057 solid 1px !important;
+    cursor: pointer;
+    border-top-right-radius: 7px; /* 右上角圆弧幅度 */
+    border-bottom-right-radius: 7px; /* 右下角圆弧幅度 */
+}
+
+#visibilityIcon {
+    color: #dee2e6;
+}
+
+#submit {
+    background-color: #236dad;
+    color: #f1ffff;
+    border: none;
+    border-radius: 7px;
+    transition: background-color 0.3s ease !important;
+    font-size: 18px;
+}
+
+#submit:hover {
+    background-color: #1e5d93 !important;
+}
+
+#submit:hover {
+
+}

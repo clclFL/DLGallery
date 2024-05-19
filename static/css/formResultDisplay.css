@@ -1,0 +1,24 @@
+#go_feedback {
+    font-size: 18px;
+}
+
+.registration-form {
+    position: relative;
+    background-color: #1e2226; /* 设置半透明白色背景 */
+    border-radius: 20px; /* 设置圆角 */
+    border: #404346 solid 1px;
+    padding: 20px 0 20px 0;
+    max-width: 500px; /* 设置最大宽度 */
+    right: 6%; /* 初始状态：隐藏在屏幕右侧 */
+    height: 500px;
+    font-size: 18px;
+}
+
+@keyframes slideFromRight {
+    0% {
+        right: -100%; /* 初始位置 */
+    }
+    100% {
+        right: 6%; /* 最终位置 */
+    }
+}
