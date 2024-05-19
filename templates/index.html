@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Deeplearning Gallery{% endblock %}
+{% block header %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/printer.css') }}">
+{% endblock %}
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-1">
+                <h1>Hello!</h1>
+                <div id="printer">
+                    <span id="text"></span>
+                    <span id="cursor">|</span>
+                </div>
+                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                <span><a href="#" role="button" id="go_gallery">Go Gallery </a></span>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+    <script type="application/javascript" src="{{ url_for('static', filename="js/index.js") }}"></script>
+{% endblock %}

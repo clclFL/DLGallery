@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block header %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/printer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/authForm.css') }}">
+    <!-- 表单验证器 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrapValidator.min.css') }}">
+{% endblock %}
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-5 col-md-offset-1">
+                <h1>Login Account</h1>
+                <div id="printer">
+                    <span id="text"></span>
+                    <span id="cursor">|</span>
+                </div>
+                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                <span><a href="/auth/register" role="button"
+                         id="go_register">Don't have an account? Go Registration</a></span>
+            </div>
+
+            <div class="col-md-4 col-md-offset-2">
+                <div class="registration-form">
+                    <form action="/auth/login" method="post">
+
+                        {{ form.csrf_token }}   <!-- 设置csrf -->
+
+                        <div class="container-fluid">
+
+                            <div class="row" style="padding-bottom: 60px;">
+                                <div class="col-md-12">
+                                    <h2 class="text-center" style="font-size: 35px; font-weight: bold">Login</h2>
+                                </div>
+                            </div>
+
+                            <!-- username -->
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">{{ form.username.label(class="form-control-label") }}</div>
+                                    <div class="col-md-12">
+                                        {{ form.username(class="form-control", id="username") }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- password -->
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-12">{{ form.password.label(class="form-control-label") }}</div>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            {{ form.password(class="form-control", id="password") }}
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" id="visibilityBtn"
+                                                        onclick="toggleVisibility()">
+                                                    <span class="glyphicon glyphicon-eye-close" id="visibilityIcon"
+                                                          aria-hidden="true"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!-- submit -->
+                        <div class="form-group" style="position: absolute; bottom: 0; width: 100px; left: 38%">
+{#                            <button type="submit" class="btn btn-primary btn-block">Login</button>#}
+                            {{ form.submit(class="btn btn-primary btn-block") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+    <script type="application/javascript" src="{{ url_for('static', filename="js/login.js") }}"></script>
+    <!-- 表单验证器 -->
+    <script type="application/javascript"
+            src="{{ url_for('static', filename="js/bootstrapValidator.min.js") }}"></script>
+{% endblock %}

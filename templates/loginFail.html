@@ -1,0 +1,32 @@
+{% extends "formResultDisplay.html" %}
+{% block result_title %}Login Fail{% endblock %}
+{% block jumbotron_title %}Ops!{% endblock %}
+{% block result_body %}
+
+    <div class="row" style="padding-bottom: 30px;">
+        <div class="col-md-12">
+            <span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span>
+            <span>Traceback: </span>
+        </div>
+        <div class="col-md-12">
+            <span style="color: #fcfc00">{{ reason }}</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            <span><a href="/auth/login">Back to login page</a></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            <span><a href="/auth/register">Go to register page</a></span>
+        </div>
+    </div>
+
+
+    <script type="application/javascript" src="{{ url_for('static', filename="js/loginFail.js") }}"></script>
+{% endblock %}
