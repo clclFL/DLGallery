@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block title %}Gallery{% endblock %}
+{% block header %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+    <style>
+
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center" style="font-size: 50px;">Model Display</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row divider"></div>
+
+        <div class="row" style="height: 60px">
+            <div class="col-md-12 text-center">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default">
+                        Page 1
+                    </button>
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- panel -->
+            <div class="col-md-6">
+                <div class="panel panel-default" data-target-url="{{ url_for('auth.login') }}">
+                    <div class="panel-heading">
+                        <span id="panel-index">#1</span>
+                        <span id="panel-title">Title</span>
+                        <span id="panel-likes">
+                        0 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="{{ url_for('static', filename='images/img2.jpg') }}" alt="img"
+                                         id="panel-ico">
+                                    <span id="banner">Hi</span>
+                                    <span id="inner">Yo</span>
+                                    <span id="learn-more">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Learn More
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script type="application/javascript" src="{{ url_for('static', filename="js/gallery.js") }}"></script>
+{% endblock %}

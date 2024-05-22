@@ -9,29 +9,47 @@ body {
 .navbar {
     background-color: transparent;
     border: none;
+    color: #b4b4b4;
+    min-height: 20px;
 }
 
-/* 确保导航栏链接颜色与背景色对比明显 */
 .navbar .navbar-nav > li > a {
-    color: #b4b4b4; /* 根据需要调整 */
-    transition: background-color 0.5s ease, color 0.5s ease;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    line-height: 20px;
+    font-size: 18px;
+    transition: color 0.5s ease;
 }
 
 /* 鼠标悬停时的颜色 */
 .navbar .navbar-nav > li > a:hover {
-    /*background-color: #2f2f2f; !* 确保悬停时也没有背景 *!*/
-    color: #ffffff; /* 根据需要调整 */
+    color: #ffffff;
 }
 
 .navbar-nav .active {
     font-weight: bold; /* 或者其他样式，表示当前页面的导航项 */
     /*background-color: #2f2f2f !important; !* 悬停时的颜色，可以根据需要调整 *!*/
-    color: #ffffff !important; /* 你想要的文字颜色 */
+    color: #ffffff !important;
 }
 
-/* 自定义导航栏高度 */
-.navbar {
-    min-height: 20px; /* 根据需要调整高度 */
+.open #user-dropdown {
+    background-color: #12161a;
+    color: #ffffff;
+}
+
+.dropdown-menu {
+    background-color: #12161a;
+    border: #404346 solid 1px;
+    border-radius: 7px !important;
+}
+
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li > ul > li > a {
+    color: white !important;
+    font-size: 16px;
+}
+
+#bs-example-navbar-collapse-1 > ul.nav.navbar-nav.navbar-right > li > ul > li > a:hover {
+    background-color: #2b3035;
 }
 
 /* 自定义导航栏品牌（Brand）的高度和字体大小 */
@@ -41,14 +59,6 @@ body {
     height: 20px; /* 与导航栏高度一致 */
     line-height: 20px; /* 使文字垂直居中 */
     font-size: 20px; /* 根据需要调整字体大小 */
-}
-
-/* 自定义导航栏链接的高度和字体大小 */
-.navbar-nav > li > a {
-    padding-top: 20px; /* 根据需要调整内边距，使文字垂直居中 */
-    padding-bottom: 15px; /* 根据需要调整内边距，使文字垂直居中 */
-    line-height: 20px; /* 根据需要调整字体行高 */
-    font-size: 18px; /* 根据需要调整字体大小 */
 }
 
 /* body */
@@ -71,3 +81,4 @@ footer {
     color: #ffffff;
     text-align: center;
 }
+

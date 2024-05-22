@@ -22,23 +22,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Deeplearning Gallery</a>
+            <a class="navbar-brand" href="/admin">Deeplearning Gallery Admin</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="/gallery/pages">Gallery</a></li>
-            </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                {% if user %}
+                {% if admin %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false" id="user-dropdown">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            {{ user.username }}
+                            {{ admin.username }}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <span style="padding-left: 10px">Profile</span>
@@ -46,24 +42,11 @@
                                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                                 My Account
                             </a></li>
-                            <li><a href="{{ url_for('auth.logout') }}">
+                            <li><a href="{{ url_for('admin.logout') }}">
                                 <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                 Logout
                             </a></li>
                         </ul>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{{ url_for('auth.register') }}">
-                            <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-                            Sign up
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('auth.login') }}">
-                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                            Login
-                        </a>
                     </li>
                 {% endif %}
             </ul>

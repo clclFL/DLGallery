@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% block title %}Process{% endblock %}
+{% extends "admin/base.html" %}
+{% block title %}Exception while Submitting{% endblock %}
 {% block header %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/formResultDisplay.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/printer.css') }}">
@@ -33,6 +33,7 @@
 
                         <!-- 错误信息 -->
                         {% block result_body %}{% endblock %}
+
                     </div>
                 </div>
             </div>

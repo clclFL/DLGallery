@@ -25,24 +25,6 @@ function toggleVisibility() {
     }
 }
 
-// $(document).ready(function () {
-//     $('#email-group').bootstrapValidator({
-//         // 配置验证规则
-//         fields: {
-//             email: {
-//                 validators: {
-//                     notEmpty: {
-//                         message: 'The email address is required'
-//                     },
-//                     emailAddress: {
-//                         message: 'The input is not a valid email address'
-//                     }
-//                 }
-//             }
-//         }
-//     });
-// });
-
 function sendEmail() {
     let email = $('#email').val();
 
@@ -70,7 +52,7 @@ function sendEmail() {
     }, 1000); // 每秒
 
     // 使用 fetch 或者其他 AJAX 方法将邮箱地址发送到后端蓝图
-    fetch('/auth/email', {
+    fetch('/auth/email/captcha', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/printer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/authForm.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animationForm.css') }}">
 {% endblock %}
 {% block body %}
 
@@ -110,7 +111,4 @@
 {% endblock %}
 {% block footer %}
     <script type="application/javascript" src="{{ url_for('static', filename="js/register.js") }}"></script>
-    <!-- 表单验证器 -->
-    <script type="application/javascript"
-            src="{{ url_for('static', filename="js/bootstrapValidator.min.js") }}"></script>
 {% endblock %}

@@ -13,12 +13,3 @@
     height: 500px;
     font-size: 18px;
 }
-
-@keyframes slideFromRight {
-    0% {
-        right: -100%; /* 初始位置 */
-    }
-    100% {
-        right: 6%; /* 最终位置 */
-    }
-}

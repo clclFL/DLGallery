@@ -1,0 +1,112 @@
+.divider {
+    border-top: 1px solid #45494d;
+    height: 20px;
+}
+
+.btn-default {
+    background-color: #2b3035 !important;
+    color: #c6f6ff;
+    border: #495057 solid 1px;
+    font-size: 16px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.btn-default:hover {
+    background-color: #32383d !important;
+    color: #c6f6ff;
+}
+
+#panel-ico {
+    position: absolute;
+    left: 0;
+    height: 80px;
+    width: 80px;
+    border-radius: 15px;
+}
+
+.panel {
+    border: #333333 solid 1px;
+    background-color: #0f0f0f;
+    border-radius: 7px;
+}
+
+.panel a {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+}
+
+.panel .panel-heading {
+    color: #ffffff;
+    background-color: #161616;
+    height: 35px;
+    border: none;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.panel .panel-body {
+    background-color: #0f0f0f;
+    border: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    height: 110px;
+    flex: 1;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+#panel-index {
+    position: absolute;
+    font-size: 18px;
+    top: 5px;
+}
+
+#panel-title {
+    position: absolute;
+    top: 5px;
+    right: 46%;
+    font-size: 18px;
+}
+
+#panel-likes {
+    position: absolute;
+    right: 21px;
+    top: 7px;
+    font-size: 16px;
+}
+
+#panel-likes span {
+    top: 2px;
+    right: 3px;
+}
+
+#banner {
+    position: absolute;
+    left: 90px;
+    font-size: 18px;
+}
+
+#inner {
+    position: absolute;
+    left: 90px;
+    font-size: 18px;
+    top: 25px;
+    max-width: 90px;
+}
+
+#learn-more {
+    position: absolute;
+    right: -5px;
+    top: 70px;
+}
+
+
+
+
+
+
+
+
+

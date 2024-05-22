@@ -4,8 +4,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/printer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/authForm.css') }}">
-    <!-- 表单验证器 -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrapValidator.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animationForm.css') }}">
 {% endblock %}
 {% block body %}
 
@@ -66,12 +65,14 @@
                                 </div>
                             </div>
 
-
+                            <!-- forget password -->
+                            <div class="row" style="font-size: 18px">
+                                <div class="col-md-12"><a href="{{ url_for('auth.requestPasswordReset') }}">Forget password?</a></div>
+                            </div>
                         </div>
 
                         <!-- submit -->
                         <div class="form-group" style="position: absolute; bottom: 0; width: 100px; left: 38%">
-{#                            <button type="submit" class="btn btn-primary btn-block">Login</button>#}
                             {{ form.submit(class="btn btn-primary btn-block") }}
                         </div>
                     </form>
@@ -84,7 +85,4 @@
 {% endblock %}
 {% block footer %}
     <script type="application/javascript" src="{{ url_for('static', filename="js/login.js") }}"></script>
-    <!-- 表单验证器 -->
-    <script type="application/javascript"
-            src="{{ url_for('static', filename="js/bootstrapValidator.min.js") }}"></script>
 {% endblock %}

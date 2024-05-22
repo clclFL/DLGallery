@@ -1,3 +1,6 @@
+SERVER_HOST = 'localhost'
+SERVER_PORT = 5001
+
 DATABASE_USERNAME = 'root'
 DATABASE_PASSWORD = ''
 DATABASE_HOST = 'localhost'
@@ -19,5 +22,3 @@ REDIS_DB = 1
 REDIS_PASSWORD = '123456'
 
 SECRET_KEY = 'Pineclone'
-
-

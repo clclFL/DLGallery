@@ -1,0 +1,13 @@
+.registration-form {
+    right: -100%; /* 初始状态：隐藏在屏幕右侧 */
+    animation: slideFromRight 0.5s forwards;
+}
+
+@keyframes slideFromRight {
+    0% {
+        right: -100%; /* 初始位置 */
+    }
+    100% {
+        right: 6%; /* 最终位置 */
+    }
+}
