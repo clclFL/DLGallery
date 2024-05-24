@@ -1,0 +1,84 @@
+{% extends 'admin/index.html' %}
+{% block operation_panel %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/userManagement.css') }}">
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row" style="height: 60px">
+                <div class="col-md-12 text-center">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            Page 1
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-7">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Registered Account</div>
+                <div class="panel-body">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Operations</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ user.username }}</td>
+                                        <td>{{ user.status }}</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                Check
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">Search Filter</div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

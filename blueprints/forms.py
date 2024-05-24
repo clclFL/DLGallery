@@ -1,13 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms.fields.simple import StringField, PasswordField, SubmitField, EmailField, HiddenField
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from wtforms.fields.choices import SelectField, SelectMultipleField
+from wtforms.fields.simple import StringField, PasswordField, SubmitField, EmailField, HiddenField, TextAreaField
 from wtforms.validators import DataRequired, Length, ValidationError
 from werkzeug.security import check_password_hash  # 解密
 
-from models import User, Admin
+from models import User, Admin, ModelPanel
 from exts import r
 
 username_validators = [DataRequired(), Length(min=3, max=10)]
-password_validators = [DataRequired(message="password cannot be empty"), Length(min=6)]
+password_validators = [DataRequired(), Length(min=6)]
 email_validators = [DataRequired()]
 captcha_validators = [DataRequired(), Length(min=6, max=6)]
 
@@ -79,3 +81,36 @@ class RegisterForm(FlaskForm):
     def validate_username(self, username_field):
         if User.query.filter_by(username=username_field.data).first():  # 用户名已经存在
             raise ValidationError('Username already registered')
+
+
+title_validators = [DataRequired(), Length(min=3, max=20)]
+banner_validators = [DataRequired(), Length(min=3, max=20)]
+inner_validators = [DataRequired(), Length(min=3, max=40)]
+icon_validators = [FileRequired('Icon has to be submitted'), FileAllowed(['png', 'jpg'])]
+
+
+class ModelPanelForm(FlaskForm):
+    title = StringField(label=u"Title", validators=title_validators)
+    banner = StringField(label=u"Banner", validators=banner_validators)
+    inner = TextAreaField(label=u"Inner", validators=inner_validators)
+    icon = FileField(label="Icon", validators=icon_validators)
+    submit = SubmitField(label=u"Add Panel")
+
+    def validate_title(self, title_field):
+        if ModelPanel.query.filter_by(title=title_field.data).first():  # 标题已经存在
+            raise ValidationError('Title already registered')
+
+
+class ModelPanelModifyForm(FlaskForm):
+    id = StringField(label=u"ID", validators=[DataRequired()])
+    title = StringField(label=u"Title", validators=title_validators)
+    banner = StringField(label=u"Banner", validators=banner_validators)
+    inner = TextAreaField(label=u"Inner", validators=inner_validators)
+    icon = FileField(label="Icon")  # 修改时可以为空
+    status = SelectField(label=u"Status", choices=[(1, u"Active"), (0, u"Inactive")])
+    submit = SubmitField(label=u"Modify Panel")
+
+    def validate_title(self, title_field):
+        if ModelPanel.query.filter_by(title=title_field.data).first():  # 标题已经存在
+            raise ValidationError('Title already registered')
+

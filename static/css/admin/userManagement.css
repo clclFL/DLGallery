@@ -1,0 +1,46 @@
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #24282c;
+}
+
+.table {
+    color: #dee2e6;
+    font-size: 16px;
+    border-top: none;
+    border-bottom: none;
+}
+
+tr {
+    border-top: #495057 solid 1px !important;
+    border-bottom: none !important;
+}
+
+
+
+.panel {
+    border: #404346 solid 1px;
+    background-color: #1e2226;
+    font-size: 16px;
+}
+
+.panel-heading {
+    color: #dee2e6 !important;
+    background-color: #24282c !important;
+    border-bottom: #404346 solid 1px !important;
+}
+
+.panel-body {
+    background-color: #1e2226 !important;
+}
+
+.btn-default {
+    background-color: #2b3035 !important;
+    color: #c6f6ff;
+    border: #495057 solid 1px;
+    font-size: 16px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.btn-default:hover {
+    background-color: #32383d !important;
+    color: #c6f6ff;
+}

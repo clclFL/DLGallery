@@ -6,6 +6,7 @@
     <title>{% block title %}{% endblock %}</title>  <!-- 标题 -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script type="application/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     {% block header %}{% endblock %}
 </head>
 <body>
@@ -29,7 +30,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home <span class="sr-only">(current)</span></a></li>
-                <li><a href="/gallery/pages">Gallery</a></li>
+                <li><a href="{{ url_for('gallery.gallery') }}">Gallery</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -94,7 +95,6 @@
 </footer>
 
 <script type="application/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
-<script type="application/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 <script type="application/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 {% block footer %}{% endblock %}
 </body>

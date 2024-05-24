@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block title %}ModelName{% endblock %}
+{% block header %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modelPanel/modelPanelBase.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <span style="font-size: 18px;">Edit by <label
+                        style="color: #7ba7ce; font-weight: bold; font-style: italic">{{ admin.username }}</label></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <span style="font-size: 50px;">{{ panel.title }}</span>
+
+                {% if like %}
+                    <style>
+                        #like-btn {
+                            background-color: #dc3545 !important;
+                        }
+
+                        #like-btn:hover {
+                            background-color: #bb2d3b !important;
+                        }
+
+                        #like-icon {
+                            color: #ffffff;
+                        }
+                    </style>
+                {% else %}
+
+                {% endif %}
+
+                <button type="button" class="btn btn-default" id="like-btn">
+                    <span class="glyphicon glyphicon-heart" aria-hidden="true" id="like-icon"></span>
+                </button>
+
+                <script>
+                    $(document).ready(function () {
+                        $('#like-btn').click(function () {
+                            window.location.href = '/gallery/models/likes?modelpanel_id={{ panel.id }}'
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div class="row divider"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default" id="display-panel" data-target-url="/gallery/models/{{ panel.id }}">
+                    <div class="panel-heading">
+                        <span id="panel-index">#{{ panel.id }}</span>
+                        <span id="panel-title">{{ panel.title }}</span>
+                        <span id="panel-likes">
+                        {{ panel.likes }} <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="{{ url_for('static', filename=panel.icon) }}" alt="icon"
+                                         id="panel-ico">
+                                    <span id="banner">{{ panel.banner }}</span>
+                                    <span id="inner">{{ panel.inner }}</span>
+                                    <span id="learn-more">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row divider"></div>
+
+
+        <div class="row">
+            {% for panel in panels %}
+                <!-- panel -->
+                <div class="col-md-6">
+                    <div class="panel panel-default" data-target-url="/gallery/models/{{ panel.id }}">
+                        <div class="panel-heading">
+                            <span id="panel-index">#{{ panel.id }}</span>
+                            <span id="panel-title">{{ panel.title }}</span>
+                            <span id="panel-likes">
+                        {{ panel.likes }} <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                        </span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <img src="{{ url_for('static', filename=panel.icon) }}" alt="icon"
+                                             id="panel-ico">
+                                        <span id="banner">{{ panel.banner }}</span>
+                                        <span id="inner">{{ panel.inner }}</span>
+                                        <span id="learn-more">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <script type="application/javascript"
+            src="{{ url_for('static', filename="js/modelPanel/modelPanelBase.js") }}"></script>
+{% endblock %}

@@ -6,6 +6,7 @@
     <title>{% block title %}{% endblock %}</title>  <!-- 标题 -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script type="application/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     {% block header %}{% endblock %}
 </head>
 <body>
@@ -77,7 +78,6 @@
 </footer>
 
 <script type="application/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
-<script type="application/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 <script type="application/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 {% block footer %}{% endblock %}
 </body>

@@ -10,3 +10,13 @@ def login_required(func):
         else:
             return func(*args, **kwargs)
     return inner
+
+
+def admin_required(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
+        if g.admin is None:
+            return redirect(url_for('admin.admin'))
+        else:
+            return func(*args, **kwargs)
+    return inner

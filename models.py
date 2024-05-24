@@ -37,10 +37,23 @@ class ModelPanel(db.Model):
     icon = Column(String(255))  # 图标
     likes = Column(Integer, nullable=False, default=lambda: 0)  # 推荐
     status = Column(Integer, nullable=False, default=lambda: 0)  # 状态
+    category = Column(Integer, nullable=False, default=lambda: 0)  # 类别
     create_time = Column(DateTime, default=datetime.now)
+    is_deleted = Column(Integer, default=lambda: 0)  # 逻辑删除字段
 
     admin_id = db.Column(db.Integer, db.ForeignKey('db_admin.id'))
-    admin = db.relationship(Admin, backref='model_panels')
+    admin = db.relationship(Admin, backref='modelpanels')
+
+
+class UserLikesModel(db.Model):
+    __tablename__ = 'db_user_likes'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('db_user.id'))
+    modelpanel_id = db.Column(db.Integer, db.ForeignKey('db_modelpanel.id'))
+    create_time = Column(DateTime, default=datetime.now)
+
+    user = db.relationship(User, backref='like_modelpanels')
+    modelpanel = db.relationship(ModelPanel, backref='like_users')
 
 
 

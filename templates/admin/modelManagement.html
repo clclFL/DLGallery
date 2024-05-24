@@ -1,0 +1,167 @@
+{% extends 'admin/index.html' %}
+{% block operation_panel %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/modelManagement.css') }}">
+
+
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="row" style="height: 60px">
+                <div class="col-md-12 text-center">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            Page 1
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-7">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Current Model</div>
+                <div class="panel-body">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Icon</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Operations</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for panel in panels %}
+                                    <tr>
+                                        <td>{{ panel.id }}</td>
+                                        <td><img src="{{ url_for('static', filename=panel.icon) }}" alt="icon"></td>
+                                        <td>{{ panel.title }}</td>
+                                        <td>{{ panel.status }}</td>
+                                        <td>
+                                            <a href="/admin/modelPanels/{{ panel.id }}" methods="GET">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                Check
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">Search Filter</div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-md-offset-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">Panel Builder</div>
+
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <div class="col-md-12">
+                            <div class="registration-form">
+                                <form action="{{ url_for('admin.addModelPanel') }}" method="post" enctype="multipart/form-data">
+
+                                    {{ form.csrf_token }}   <!-- 设置csrf -->
+
+                                    <div class="container-fluid">
+                                        <!-- title -->
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12">{{ form.title.label(class="form-control-label") }}</div>
+                                                <div class="col-md-12">
+                                                    {{ form.title(class="form-control", id="title") }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- banner -->
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12">{{ form.banner.label(class="form-control-label") }}</div>
+                                                <div class="col-md-12">
+                                                    {{ form.banner(class="form-control", id="banner") }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- inner -->
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-12">{{ form.inner.label(class="form-control-label") }}</div>
+                                                <div class="col-md-12">
+                                                    {{ form.inner(class="form-control", id="inner") }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- icon -->
+                                        <div class="row" style="padding-top: 15px">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div class="input-group">
+                                                        <input id='location' class="form-control"
+                                                               onclick="$('#i-file').click();">
+                                                        <label class="input-group-btn">
+                                                            <input type="button" id="i-check" value="Select Icon"
+                                                                   class="btn btn-primary"
+                                                                   onclick="$('#i-file').click();">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                {{ form.icon(id='i-file',onchange="$('#location').val($('#i-file').val());",style="display: none") }}
+                                            </div>
+                                        </div>
+
+                                        <div class="row" style="padding-top: 15px">
+                                            <div class="col-md-5" style="padding: 0 0 0 0">
+                                                <!-- submit -->
+                                                <div class="form-group" id="submit">
+                                                    {{ form.submit(class="btn btn-primary btn-block") }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

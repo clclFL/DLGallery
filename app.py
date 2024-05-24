@@ -4,10 +4,11 @@ from flask import Flask, send_from_directory, session, g
 from flask_migrate import Migrate
 
 import config
-from blueprints.user import bp as auth_bp
+from blueprints.auth import bp as auth_bp
 from blueprints.index import bp as index_bp
 from blueprints.gallery import bp as gallery_bp
 from blueprints.admin import bp as admin_bp
+from blueprints.user import bp as user_bp
 from exts import db, mail
 from models import User, Admin
 
@@ -22,6 +23,7 @@ app.register_blueprint(auth_bp)  # 路由注册
 app.register_blueprint(index_bp)
 app.register_blueprint(gallery_bp)
 app.register_blueprint(admin_bp)
+app.register_blueprint(user_bp)
 
 
 @app.route('/favicon.ico')  # 项目图标

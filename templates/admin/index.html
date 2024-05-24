@@ -1,15 +1,56 @@
 {% extends "admin/base.html" %}
 {% block title %}Deeplearning Gallery Admin{% endblock %}
 {% block header %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/index.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/printer.css') }}">
+    {% if admin %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/index-workbench.css') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/printer.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/index-login.css') }}">
+    {% endif %}
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/authForm.css') }}">
 {% endblock %}
 {% block body %}
+
+    {% if traceback %}
+        <script>
+            alert("{{ traceback }}")
+        </script>
+    {% endif %}
+
     {% if admin %}
         <!-- 控制台 -->
-        workbench
+        <div class="container">
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center" style="font-size: 50px;">Workbench</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row divider"></div>
+
+            <div class="row">
+                <!-- panel -->
+                <div class="col-md-12" style="padding-bottom: 60px">
+                    <ul class="nav nav-tabs nav-justified">
+                        <li role="presentation"><a href="{{ url_for('admin.analyze') }}" class="workbench_item">Data
+                            Management</a></li>
+                        <li role="presentation"><a href="{{ url_for('admin.modelPanels') }}" class="workbench_item">Model
+                            Management</a></li>
+                        <li role="presentation"><a href="/admin/userAccounts" class="workbench_item">User Management</a>
+                        </li>
+                        <li role="presentation"><a href="#" class="workbench_item">Admin Management</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            {% block operation_panel %}
+            {% endblock %}
+        </div>
+
 
 
     {% else %}
@@ -89,5 +130,11 @@
 
 {% endblock %}
 {% block footer %}
-    <script type="application/javascript" src="{{ url_for('static', filename="js/admin/index.js") }}"></script>
+    {% if admin %}
+        <script type="application/javascript"
+                src="{{ url_for('static', filename="js/admin/index-workbench.js") }}"></script>
+    {% else %}
+        <script type="application/javascript"
+                src="{{ url_for('static', filename="js/admin/index-login.js") }}"></script>
+    {% endif %}
 {% endblock %}

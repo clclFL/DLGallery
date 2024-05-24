@@ -1,0 +1,166 @@
+{% extends 'admin/index.html' %}
+{% block operation_panel %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/modelCheck.css') }}">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default" id="display-panel" data-target-url="/gallery/models/{{ panel.id }}">
+                    <div class="panel-heading">
+                        <span id="panel-index">#{{ panel.id }}</span>
+                        <span id="panel-title">{{ panel.title }}</span>
+                        <span id="panel-likes">
+                        {{ panel.likes }} <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="{{ url_for('static', filename=panel.icon) }}" alt="icon"
+                                         id="panel-ico">
+                                    <span id="banner">{{ panel.banner }}</span>
+                                    <span id="inner">{{ panel.inner }}</span>
+                                    <span id="learn-more">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-default data-panel">
+                    <div class="panel-heading">Panel Modifier</div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="col-md-12">
+                                <div class="registration-form">
+                                    <form action="{{ url_for('admin.modifyModelPanels', panel_id=panel.id) }}"
+                                          method="POST"
+                                          enctype="multipart/form-data">
+
+                                        {{ form.csrf_token }}   <!-- 设置csrf -->
+
+                                        <div class="container-fluid">
+                                            <!-- title -->
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">{{ form.title.label(class="form-control-label") }}</div>
+                                                    <div class="col-md-12">
+                                                        {{ form.title(class="form-control", id="title") }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- banner -->
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">{{ form.banner.label(class="form-control-label") }}</div>
+                                                    <div class="col-md-12">
+                                                        {{ form.banner(class="form-control", id="banner") }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- inner -->
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">{{ form.inner.label(class="form-control-label") }}</div>
+                                                    <div class="col-md-12">
+                                                        <div class="">
+                                                            {{ form.inner(class="form-control", id="inner") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- status -->
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">{{ form.status.label(class="form-control-label") }}</div>
+                                                    <div class="col-md-12">
+                                                        {{ form.status(class="form-control", id="status") }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- icon -->
+                                            <div class="row" style="padding-top: 15px">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <div class="input-group">
+                                                            <input id='location' class="form-control"
+                                                                   onclick="$('#i-file').click();">
+                                                            <label class="input-group-btn">
+                                                                <input type="button" id="i-check" value="Select Icon"
+                                                                       class="btn btn-primary"
+                                                                       onclick="$('#i-file').click();">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    {{ form.icon(id='i-file',onchange="$('#location').val($('#i-file').val());",style="display: none") }}
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="padding-top: 15px">
+                                                <div class="col-md-5" style="padding: 0 0 0 0">
+                                                    <!-- submit -->
+                                                    <div class="form-group" id="submit">
+                                                        {{ form.submit(class="btn btn-primary btn-block") }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-5" style="padding: 0 0 0 0">
+                                                    <!-- delete -->
+                                                    <input type="button" id="i-delete" class="btn btn-danger"
+                                                           value="Delete Panel"/>
+                                                    <script>
+                                                        $(document).ready(function () {
+                                                            $('#i-delete').click(function () {
+                                                                var confirmed = confirm("Delete this panel for sure?");
+                                                                if (confirmed) {
+                                                                    window.location.href='/admin/modelPanels/delete?delete_id={{ panel.id }}'
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-7">
+                <div class="panel panel-default data-panel">
+                    <div class="panel-heading">API Data Chart</div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="col-md-12">
+                                <div id="bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block footer %}
+    {{ super() }}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
+    <script type="application/javascript" src="{{ url_for('static', filename='js/admin/modelCheck.js') }}"></script>
+
+{% endblock %}

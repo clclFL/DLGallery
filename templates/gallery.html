@@ -35,33 +35,36 @@
         </div>
 
         <div class="row">
-            <!-- panel -->
-            <div class="col-md-6">
-                <div class="panel panel-default" data-target-url="{{ url_for('auth.login') }}">
-                    <div class="panel-heading">
-                        <span id="panel-index">#1</span>
-                        <span id="panel-title">Title</span>
-                        <span id="panel-likes">
-                        0 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            {% for panel in panels %}
+                <!-- panel -->
+                <div class="col-md-6">
+                    <div class="panel panel-default" data-target-url="/gallery/models/{{ panel.id }}">
+                        <div class="panel-heading">
+                            <span id="panel-index">#{{ panel.id }}</span>
+                            <span id="panel-title">{{ panel.title }}</span>
+                            <span id="panel-likes">
+                        {{ panel.likes }} <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
                         </span>
-                    </div>
-                    <div class="panel-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <img src="{{ url_for('static', filename='images/img2.jpg') }}" alt="img"
-                                         id="panel-ico">
-                                    <span id="banner">Hi</span>
-                                    <span id="inner">Yo</span>
-                                    <span id="learn-more">
-                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Learn More
+                        </div>
+                        <div class="panel-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <img src="{{ url_for('static', filename=panel.icon) }}" alt="icon"
+                                             id="panel-ico">
+                                        <span id="banner">{{ panel.banner }}</span>
+                                        <span id="inner">{{ panel.inner }}</span>
+                                        <span id="learn-more">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                     </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
+
 
         </div>
 

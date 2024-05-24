@@ -103,6 +103,33 @@
     top: 70px;
 }
 
+#like-btn {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    width: 40px;
+    font-size: 22px;
+    height: 40px;
+    background-color: #2c0b0e !important;
+    border-radius: 7px;
+    border: #dc3545 solid 1px;
+}
+
+#like-btn:hover {
+    background-color: #dc3545 !important;
+}
+
+#like-btn:hover #like-icon {
+    color: #ffffff;
+}
+
+#like-icon {
+    position: relative;
+    right: 4px;
+    top: 3px;
+    color: #dc3545;
+}
+
 
 
 
