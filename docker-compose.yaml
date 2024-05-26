@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  app:
+    build: ./
+    ports:
+      - "80:5000"
+    volumes:
+      - ./:/app
+    environment:
+      - TZ=Asia/Shanghai
+  redis:
+    image: redis:latest
+    environment:
+      - TZ=Asia/Shanghai
+
+  mysql:
+    image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - TZ=Asia/Shanghai
+
+
+volumes:
+  redis:

@@ -2,6 +2,9 @@
 {% block title %}ModelName{% endblock %}
 {% block header %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/modelPanel/modelPanelBase.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/github.min.css') }}">
+    <script src="{{ url_for('static', filename='js/marked.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/highlight.min.js') }}"></script>
 {% endblock %}
 {% block body %}
     <div class="container">
@@ -80,44 +83,15 @@
         </div>
 
         <div class="row divider"></div>
-
-
-        <div class="row">
-            {% for panel in panels %}
-                <!-- panel -->
-                <div class="col-md-6">
-                    <div class="panel panel-default" data-target-url="/gallery/models/{{ panel.id }}">
-                        <div class="panel-heading">
-                            <span id="panel-index">#{{ panel.id }}</span>
-                            <span id="panel-title">{{ panel.title }}</span>
-                            <span id="panel-likes">
-                        {{ panel.likes }} <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                        </span>
-                        </div>
-                        <div class="panel-body">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <img src="{{ url_for('static', filename=panel.icon) }}" alt="icon"
-                                             id="panel-ico">
-                                        <span id="banner">{{ panel.banner }}</span>
-                                        <span id="inner">{{ panel.inner }}</span>
-                                        <span id="learn-more">
-                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                    </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-
-
-        </div>
-
     </div>
+
+
+    {% block model_display %}
+        <!-- 模型展示 -->
+    {% endblock %}
+
 {% endblock %}
+
 
 {% block footer %}
     <script type="application/javascript"

@@ -1,7 +1,7 @@
 import os
 import uuid
 
-from flask import Blueprint, render_template, session, request, redirect, url_for, g
+from flask import Blueprint, render_template, session, request, redirect, url_for, g, Response, jsonify
 from pyecharts.charts import Bar, Line
 from pyecharts.globals import ThemeType
 from pyecharts.options import TextStyleOpts, LineStyleOpts
@@ -99,12 +99,14 @@ def modifyModelPanels(panel_id):
         inner = form.inner.data
         status = form.status.data
         icon_file = form.icon.data
+        forward = form.forward.data
 
         modelPanel = ModelPanel.query.get(panel_id)
         modelPanel.title = title
         modelPanel.banner = banner
         modelPanel.inner = inner
         modelPanel.status = status
+        modelPanel.forward = forward
 
         if icon_file:
             base, ext = os.path.splitext(secure_filename(icon_file.filename))
@@ -173,9 +175,11 @@ def addModelPanel():
         base, ext = os.path.splitext(secure_filename(icon_file.filename))
         icon_filename = f'{uuid.uuid4().hex}.{ext}'
         icon_file.save(os.path.join(config.PANEL_ICON_DIR, icon_filename))  # 保存文件
+        forward = form.forward.data
 
         inner = form.inner.data
-        pannel = ModelPanel(title=title, banner=banner, icon=f'images/{icon_filename}', inner=inner, admin=g.admin)
+        pannel = ModelPanel(title=title, banner=banner, icon=f'images/{icon_filename}',
+                            inner=inner, admin=g.admin, forward=forward)
         db.session.add(pannel)
         db.session.commit()
         return redirect(url_for('admin.modelPanels'))
@@ -184,3 +188,7 @@ def addModelPanel():
         for k, v in form.errors.items():
             reason.append(", ".join(v))
         return redirect(url_for('admin.modelPanels', traceback=", ".join(reason)))
+
+
+
+

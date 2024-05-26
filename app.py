@@ -41,7 +41,7 @@ def prj_before_request():
         setattr(g, 'user', None)
     else:
         user = User.query.get(user_id)
-        if user.status == 0:  # 如果账户此时处于禁用状态
+        if user and user.status == 0:  # 如果账户此时处于禁用状态
             del session['user_id']
             setattr(g, 'user', None)
         else:
@@ -52,7 +52,7 @@ def prj_before_request():
         setattr(g, 'admin', None)
     else:
         admin = Admin.query.get(admin_id)
-        if admin.status == 0:  # 如果账户此时处于禁用状态
+        if admin and admin.status == 0:  # 如果账户此时处于禁用状态
             del session['admin_id']
             setattr(g, 'admin', None)
         else:

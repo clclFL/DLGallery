@@ -79,6 +79,18 @@
                                                 </div>
                                             </div>
 
+                                            <!-- inner -->
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">{{ form.forward.label(class="form-control-label") }}</div>
+                                                    <div class="col-md-12">
+                                                        <div class="">
+                                                            {{ form.forward(class="form-control", id="forward") }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <!-- status -->
                                             <div class="row">
                                                 <div class="form-group">
@@ -124,7 +136,7 @@
                                                             $('#i-delete').click(function () {
                                                                 var confirmed = confirm("Delete this panel for sure?");
                                                                 if (confirmed) {
-                                                                    window.location.href='/admin/modelPanels/delete?delete_id={{ panel.id }}'
+                                                                    window.location.href = '/admin/modelPanels/delete?delete_id={{ panel.id }}'
                                                                 }
                                                             });
                                                         });
@@ -162,5 +174,4 @@
     {{ super() }}
     <script type="text/javascript" src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
     <script type="application/javascript" src="{{ url_for('static', filename='js/admin/modelCheck.js') }}"></script>
-
 {% endblock %}

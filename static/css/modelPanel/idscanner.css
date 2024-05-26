@@ -1,0 +1,45 @@
+.display-panel {
+    border: #45484b solid 1px;
+}
+
+.display-panel .panel-heading {
+    color: #ffffff;
+    background-color: #24282c;
+    border: none;
+    font-size: 18px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.display-panel .panel-body {
+    background-color: #1e2226;
+    border: none;
+    border-top: #45484b solid 1px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    height: 110px;
+    flex: 1;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+#image-preview, #image-result, #image-preview-2 , #image-result-2, #image-preview-3 , #image-result-3 {
+    height: 130px;
+    width: auto;
+}
+
+#submit-button, #submit-button-2, #submit-button-3 , #use-example {
+    position: relative;
+
+    background-color: #236dad;
+    color: #f1ffff;
+    border: none;
+    border-radius: 7px;
+    transition: background-color 0.3s ease !important;
+    font-size: 18px;
+}
+
+#submit-button:hover, #use-example:hover {
+    background-color: #1e5d93 !important;
+}
+

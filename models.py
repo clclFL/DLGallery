@@ -39,6 +39,7 @@ class ModelPanel(db.Model):
     status = Column(Integer, nullable=False, default=lambda: 0)  # 状态
     category = Column(Integer, nullable=False, default=lambda: 0)  # 类别
     create_time = Column(DateTime, default=datetime.now)
+    forward = Column(String(100), nullable=False)
     is_deleted = Column(Integer, default=lambda: 0)  # 逻辑删除字段
 
     admin_id = db.Column(db.Integer, db.ForeignKey('db_admin.id'))

@@ -1,0 +1,167 @@
+{% extends 'modelPanel/modelPanelBase.html' %}
+{% block model_display %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modelPanel/idscanner.css') }}"> <!-- for md -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default display-panel">
+                    <div class="panel-heading"><span id="panel-index">身份证识别</span></div>
+                    <div class="panel-body" style="height: 110%">
+                        <div id="markdown-container"></div>
+                        <script>
+                            inner = `# 身份证识别
+
+## 适用场景
+
+身份证识别技术在多个领域和场景中发挥着重要作用，通常情况下需要对身份证信息进行快速识别准确识别而使用，例如：
+
+- 金融行业：银行开户，申请贷款，信用卡办理等业务
+- 政务服务：在身份验证环节用于快速查验用户身份
+- 安保行业：在入站检票，酒店入住等场景对个人用户进行身份核验，确保安全
+- 交通场景：对交通工具驾驶者的身份进行验证
+- 招聘场景：对入职员工进行身份核验等
+
+当然身份证识别技术不止于在上述场景中应用，更多的领用领域包括贷款、物流、保险等
+
+本模块演示了一种身份证识别的实现步骤，可以分为3步实现：
+
+1. 通过预处理身份证区域检测查找
+2. 身份证文本信息提取
+3. 身份证文本信息识别
+
+使用到的技术为OpenCV-Python、Numpy以及CnOcr，python版本为3.12
+
+## 身份区域检测查找
+
+先后对原始提交身份证件图片进行\`灰度处理 -> 中值滤波 -> 二值处理 -> 边缘检测 -> 边缘膨胀 -> 轮廓检测 -> 轮廓排序 -> 透视变换 -> 固定图像大小\`几个步骤来实现，实现之后可以达到专注身份证区域的目的，排除身份证区域以外的干扰`
+                            document.getElementById('markdown-container').innerHTML = marked(inner)
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default display-panel">
+                    <div class="panel-heading"><span id="panel-index">身份证轮廓识别</span></div>
+                    <div class="panel-body" style="height: 110%">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="markdown-container-2"></div>
+                                    <script>
+                                        inner = `这是一个提取身份证区域的案例，上传一张图片或者使用例图来查看效果`
+                                        document.getElementById('markdown-container-2').innerHTML = marked(inner)
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img id="image-preview"
+                                         src="{{ url_for('static', filename='images/idcard-noneselected.png') }}"
+                                         alt="预览图片" onclick="$('#image-upload').click();">
+                                    <input type="file" id="image-upload" accept="image/*" style="display: none">
+                                </div>
+                                <div class="col-md-3" style="height: 130px;">
+                                    <button id="submit-button" disabled style="top: 30%;">
+                                        识别身份证区域
+                                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <img id="image-result"
+                                         src="{{ url_for('static', filename='images/idcard-result.png') }}"
+                                         alt="结果图片">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default display-panel">
+                    <div class="panel-heading"><span id="panel-index">身份证文本信息提取</span></div>
+                    <div class="panel-body" style="height: 110%">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="markdown-container-3"></div>
+                                    <script>
+                                        inner = `在先前获取的身份证轮廓范围内进行处理，获取需要识别的文本，将这些文本作为目标在进行识别`
+                                        document.getElementById('markdown-container-3').innerHTML = marked(inner)
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img id="image-preview-2"
+                                         src="{{ url_for('static', filename='images/idcard-noneselected.png') }}"
+                                         alt="预览图片" onclick="$('#image-upload-2').click();">
+                                    <input type="file" id="image-upload-2" accept="image/*" style="display: none">
+                                </div>
+                                <div class="col-md-3" style="height: 130px;">
+                                    <button id="submit-button-2" disabled style="top: 30%;">
+                                        识别身份证文本
+                                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <img id="image-result-2"
+                                         src="{{ url_for('static', filename='images/idcard-result.png') }}"
+                                         alt="结果图片">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default display-panel">
+                    <div class="panel-heading"><span id="panel-index">文字提取</span></div>
+                    <div class="panel-body" style="height: 110%">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div id="markdown-container-4"></div>
+                                    <script>
+                                        inner = `对提取的文本信息进行识别，提取卡面上的文字信息，在身份证当中提取获取的字符将会排列在下方`
+                                        document.getElementById('markdown-container-4').innerHTML = marked(inner)
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img id="image-preview-3"
+                                         src="{{ url_for('static', filename='images/idcard-noneselected.png') }}"
+                                         alt="预览图片" onclick="$('#image-upload-3').click();">
+                                    <input type="file" id="image-upload-3" accept="image/*" style="display: none">
+                                </div>
+                                <div class="col-md-3" style="height: 130px;">
+                                    <button id="submit-button-3" disabled style="top: 30%;">
+                                        识别身份证文本
+                                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <div id="my-fault" style="background-color: #394554; color: white;border-radius: 7px; width: 300px; height: 130px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="application/javascript" src="{{ url_for('static', filename='js/modelPanel/idscanner.js') }}"></script>
+{% endblock %}

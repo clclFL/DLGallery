@@ -94,11 +94,16 @@ class ModelPanelForm(FlaskForm):
     banner = StringField(label=u"Banner", validators=banner_validators)
     inner = TextAreaField(label=u"Inner", validators=inner_validators)
     icon = FileField(label="Icon", validators=icon_validators)
+    forward = StringField(label=u"Forward", validators=[DataRequired()])
     submit = SubmitField(label=u"Add Panel")
 
     def validate_title(self, title_field):
         if ModelPanel.query.filter_by(title=title_field.data).first():  # 标题已经存在
             raise ValidationError('Title already registered')
+
+    def validate_forward(self, forward_field):
+        if ModelPanel.query.filter_by(forward=forward_field.data).first():
+            raise ValidationError('Forward already registered')
 
 
 class ModelPanelModifyForm(FlaskForm):
@@ -107,10 +112,15 @@ class ModelPanelModifyForm(FlaskForm):
     banner = StringField(label=u"Banner", validators=banner_validators)
     inner = TextAreaField(label=u"Inner", validators=inner_validators)
     icon = FileField(label="Icon")  # 修改时可以为空
+    forward = StringField(label=u"Forward", validators=[DataRequired()])
     status = SelectField(label=u"Status", choices=[(1, u"Active"), (0, u"Inactive")])
     submit = SubmitField(label=u"Modify Panel")
 
     def validate_title(self, title_field):
         if ModelPanel.query.filter_by(title=title_field.data).first():  # 标题已经存在
             raise ValidationError('Title already registered')
+
+    def validate_forward(self, forward_field):
+        if ModelPanel.query.filter_by(forward=forward_field.data).first():
+            raise ValidationError('Forward already registered')
 
